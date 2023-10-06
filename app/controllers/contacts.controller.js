@@ -80,8 +80,11 @@ exports.deleteAllContacts = async (req, res, next) => {
   }
 };
 
-exports.findAllFavorite = (req, res) => {
-  res.send({
-    message: "findAllFavorite handler",
-  });
-};
+exports.findAllFavorite = async (req, res, next) => {
+  try {
+    const documents = await contactService.findAllFavorite();
+    return res.send(documents);
+  } catch (error) {
+    next(new ApiError("An error accurred while retrieving contacts", 500));
+  }
+}

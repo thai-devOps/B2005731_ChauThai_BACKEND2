@@ -105,7 +105,7 @@ class ContactService {
     try {
       const contacts = await this.databaseSetvices.contacts
         .find({
-          isFavorite: true,
+          favorite: true,
         })
         .toArray();
       return contacts;
