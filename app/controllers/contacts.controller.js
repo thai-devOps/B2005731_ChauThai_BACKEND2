@@ -43,8 +43,15 @@ exports.update = async (req, res, next) => {
     return next(new ApiError("Update data cannot be empty", 400));
   }
   const { id } = req.params;
+  const _data = {
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
+    address: req.body.address, 
+    favorite: req.body.favorite,
+  };
   try {
-    const document = await contactService.update(id, req.body);
+    const document = await contactService.update(id, _data);
     if (!document) {
       return next(new ApiError(`Contact with id ${id} not found`, 404));
     }
@@ -53,6 +60,7 @@ exports.update = async (req, res, next) => {
     next(new ApiError(`An error accurred while updating contact ${id}`, 500));
   }
 };
+
 
 exports.deleteContact = async (req, res, next) => {
   const { id } = req.params;
@@ -87,4 +95,4 @@ exports.findAllFavorite = async (req, res, next) => {
   } catch (error) {
     next(new ApiError("An error accurred while retrieving contacts", 500));
   }
-}
+};
