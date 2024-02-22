@@ -3,9 +3,7 @@ const config = {
     port: process.env.PORT || 3000,
   },
   db: {
-    uri:
-      process.env.MONGO_URI ||
-      "mongodb+srv://chauthai:chauthai123@quanlyphongtro.zumwed9.mongodb.net/?retryWrites=true&w=majority",
+    uri: process.env.MONGO_URI ,
     name: "contact-book-api",
   },
 };
